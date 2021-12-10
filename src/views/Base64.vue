@@ -1,15 +1,15 @@
 <template>
-  <hello-world />
+  <base64 />
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld'
+import Base64 from '../components/Base64'
 
 export default {
   name: 'Home',
 
   components: {
-    HelloWorld,
+    Base64,
   },
 }
 </script>

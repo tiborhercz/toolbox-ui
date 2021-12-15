@@ -13,7 +13,25 @@ const routes = [
   {
     path: '/base64',
     name: 'Base64',
-    component: () => import(/* webpackChunkName: "Base64" */ '../views/Base64'),
+    component: {
+      render: (c) => c('router-view'),
+    },
+    children: [
+      {
+        path: 'encode',
+        component: () => import(/* webpackChunkName: "Base64" */ '../views/Base64'),
+        props: {
+          type: 'encode',
+        },
+      },
+      {
+        path: 'decode',
+        component: () => import(/* webpackChunkName: "Base64" */ '../views/Base64'),
+        props: {
+          type: 'decode',
+        },
+      },
+    ],
   },
 ]
 

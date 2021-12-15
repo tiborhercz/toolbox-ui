@@ -14,6 +14,8 @@ module.exports = {
   },
   rules: {
     semi: ['error', 'never'],
+    "vue/v-bind-style": ["error", "longform"],
+    "vue/v-on-style": ["error", "longform"],
     'import/extensions': ['error', 'always', {
       js: 'never',
       mjs: 'never',

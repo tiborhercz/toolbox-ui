@@ -3,7 +3,7 @@
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
-          :src="require('../assets/logo.svg')"
+          v-bind:src="require('../assets/logo.svg')"
           class="my-3"
           contain
           height="200"
@@ -36,8 +36,8 @@
         <v-row justify="center">
           <a
             v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
+            v-bind:key="i"
+            v-bind:href="next.href"
             class="subheading mx-3"
             target="_blank"
           >
@@ -57,8 +57,8 @@
         <v-row justify="center">
           <a
             v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
+            v-bind:key="i"
+            v-bind:href="link.href"
             class="subheading mx-3"
             target="_blank"
           >
@@ -78,8 +78,8 @@
         <v-row justify="center">
           <a
             v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
+            v-bind:key="i"
+            v-bind:href="eco.href"
             class="subheading mx-3"
             target="_blank"
           >

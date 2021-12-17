@@ -1,14 +1,21 @@
 <template>
-  <base64
-    v-bind:type="type"
-  />
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1>{{ type }}</h1>
+      </v-col>
+    </v-row>
+    <base64
+      v-bind:type="type"
+    />
+  </v-container>
 </template>
 
 <script>
 import Base64 from '@/components/Base64'
 
 export default {
-  name: 'Home',
+  name: 'Base64View',
   components: {
     Base64,
   },

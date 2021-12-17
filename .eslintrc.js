@@ -16,6 +16,7 @@ module.exports = {
     semi: ['error', 'never'],
     "vue/v-bind-style": ["error", "longform"],
     "vue/v-on-style": ["error", "longform"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     'import/extensions': ['error', 'always', {
       js: 'never',
       mjs: 'never',

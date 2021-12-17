@@ -10,8 +10,6 @@
       <v-list-item
         v-if="!link.subLinks"
         v-bind:to="link.to"
-        v-bind:active-class="color"
-        avatar
         class="v-list-item"
       >
         <v-list-item-icon>
@@ -65,6 +63,11 @@ export default {
               to: '/base64/decode',
             },
           ],
+        },
+        {
+          title: 'Cidr',
+          icon: 'mdi-view-dashboard',
+          to: '/cidr',
         },
       ],
     }

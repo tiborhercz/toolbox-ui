@@ -11,6 +11,11 @@ const routes = [
     component: Home,
   },
   {
+    path: '/cidr',
+    name: 'Cidr',
+    component: () => import(/* webpackChunkName: "Cidr" */ '../views/Cidr'),
+  },
+  {
     path: '/base64',
     name: 'Base64',
     component: {

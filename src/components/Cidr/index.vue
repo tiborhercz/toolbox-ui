@@ -13,14 +13,52 @@
           placeholder="10.0.0.0/24"
           outlined
           dense
-        ></v-autocomplete>
+          v-on:keydown.enter="getCidr()"
+        />
+        <v-btn
+          v-on:click="getCidr()"
+        >
+          Send
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="6"
+      >
+        <v-simple-table dark>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  Name
+                </th>
+                <th class="text-left">
+                  Value
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="item in ipv4Data"
+                v-bind:key="item.name"
+              >
+                <td>{{ item.name }}</td>
+                <td>{{ item.value }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { validIpv4 } from '@/utils'
+import { validateIpv4Cidr, validIpv4 } from '@/utils'
+import Ipv4Api from '@/api/ipv4'
 
 export default {
   name: 'Cidr',
@@ -33,6 +71,24 @@ export default {
       items: ['0.0.0.0/8', '0.0.0.0/16', '0.0.0.0/24'],
       isValidCidrIp: false,
       value: null,
+      ipv4Data: {
+        subnetMask: {
+          name: 'Subnetmask',
+          value: null,
+        },
+        firstIp: {
+          name: 'First ip address',
+          value: null,
+        },
+        lastIp: {
+          name: 'Last ip address',
+          value: null,
+        },
+        totalIpAddresses: {
+          name: 'Total ip addresses',
+          value: null,
+        },
+      },
     }
   },
   computed: {
@@ -42,7 +98,7 @@ export default {
       },
       set(newValue) {
         if ((this.isIpPartiallyValid(newValue)
-          || validIpv4(newValue))
+            || (validIpv4(newValue)) || validateIpv4Cidr(newValue))
           && this.isCidrValid(newValue)
         ) {
           this.setIp(newValue)
@@ -53,6 +109,15 @@ export default {
     },
   },
   methods: {
+    async getCidr() {
+      if (validateIpv4Cidr(this.value)) {
+        const { data } = await Ipv4Api.ipv4Cidr(this.value)
+        this.ipv4Data.subnetMask.value = data.data.subnetMask
+        this.ipv4Data.firstIp.value = data.data.firstIp
+        this.ipv4Data.lastIp.value = data.data.lastIp
+        this.ipv4Data.totalIpAddresses.value = data.data.totalIpAddresses
+      }
+    },
     isCidrValid(value) {
       const slashCount = (value.match(/\//g) || []).length
       if (slashCount > 1) {

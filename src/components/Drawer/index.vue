@@ -52,7 +52,7 @@ export default {
       items: [
         {
           title: 'Base64',
-          icon: 'mdi-view-dashboard',
+          icon: 'mdi-code-braces',
           subLinks: [
             {
               title: 'Encode',
@@ -66,7 +66,7 @@ export default {
         },
         {
           title: 'Cidr',
-          icon: 'mdi-view-dashboard',
+          icon: 'mdi-web',
           to: '/cidr',
         },
       ],

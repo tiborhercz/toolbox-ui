@@ -1,6 +1,9 @@
 <template>
-  <v-app>
-    <v-navigation-drawer app>
+  <v-app v-bind:style="{background: $vuetify.theme.themes['dark'].background}">
+    <v-navigation-drawer
+      v-bind:color="$vuetify.theme.themes['dark'].drawer"
+      app
+    >
       <Drawer />
     </v-navigation-drawer>
     <v-main>

@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '14' ]
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+
+      - name: Installing project dependencies
+      - run: npm install
+
+      - name: Building the project
+      - run: npm run build
+
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v2
+        with:
+          name: toolbox-ui
+          path: |
+            . 
+            !node_modules/

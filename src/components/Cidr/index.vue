@@ -1,15 +1,16 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="mb-15">
       <v-col
         cols="12"
         sm="6"
         md="3"
       >
         <v-autocomplete
-          v-model="value"
           v-bind:items="items"
           v-bind:search-input.sync="searchValue"
+          v-bind:error="error"
+          v-bind:error-messages="errorMessages"
           placeholder="10.0.0.0/24"
           outlined
           dense
@@ -32,10 +33,16 @@
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">
+                <th
+                  width="50%"
+                  class="text-left"
+                >
                   Name
                 </th>
-                <th class="text-left">
+                <th
+                  width="50%"
+                  class="text-left"
+                >
                   Value
                 </th>
               </tr>
@@ -60,6 +67,29 @@
 import { validateIpv4Cidr, validIpv4 } from '@/utils'
 import Ipv4Api from '@/api/ipv4'
 
+const DEFAULT_ITEMS = ['0.0.0.0/8', '0.0.0.0/16', '0.0.0.0/24']
+
+function DEFAULT_IPV4DATA() {
+  return {
+    subnetMask: {
+      name: 'Subnetmask',
+      value: null,
+    },
+    firstIp: {
+      name: 'First ip address',
+      value: null,
+    },
+    lastIp: {
+      name: 'Last ip address',
+      value: null,
+    },
+    totalIpAddresses: {
+      name: 'Total ip addresses',
+      value: null,
+    },
+  }
+}
+
 export default {
   name: 'Cidr',
   components: {},
@@ -71,24 +101,9 @@ export default {
       items: ['0.0.0.0/8', '0.0.0.0/16', '0.0.0.0/24'],
       isValidCidrIp: false,
       value: null,
-      ipv4Data: {
-        subnetMask: {
-          name: 'Subnetmask',
-          value: null,
-        },
-        firstIp: {
-          name: 'First ip address',
-          value: null,
-        },
-        lastIp: {
-          name: 'Last ip address',
-          value: null,
-        },
-        totalIpAddresses: {
-          name: 'Total ip addresses',
-          value: null,
-        },
-      },
+      error: false,
+      errorMessages: [],
+      ipv4Data: DEFAULT_IPV4DATA(),
     }
   },
   computed: {
@@ -97,13 +112,28 @@ export default {
         return this.value
       },
       set(newValue) {
+        this.error = false
+        this.errorMessages = []
+        this.ipv4Data = DEFAULT_IPV4DATA()
+
+        if (newValue === '') {
+          this.items = DEFAULT_ITEMS
+          return
+        }
+
+        this.value = newValue
+        this.items.push(newValue)
+
         if ((this.isIpPartiallyValid(newValue)
             || (validIpv4(newValue)) || validateIpv4Cidr(newValue))
           && this.isCidrValid(newValue)
         ) {
           this.setIp(newValue)
           this.generateItems(newValue)
-          this.items.push(newValue)
+        }
+
+        if (validateIpv4Cidr(newValue)) {
+          this.getCidr()
         }
       },
     },
@@ -116,6 +146,9 @@ export default {
         this.ipv4Data.firstIp.value = data.data.firstIp
         this.ipv4Data.lastIp.value = data.data.lastIp
         this.ipv4Data.totalIpAddresses.value = data.data.totalIpAddresses
+      } else {
+        this.error = true
+        this.errorMessages.push(`${this.value} is not a valid ipv4 address with cidr. Example: 10.0.0.0/24`)
       }
     },
     isCidrValid(value) {

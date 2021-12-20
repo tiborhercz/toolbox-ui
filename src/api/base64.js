@@ -12,6 +12,6 @@ export default {
     const requestBody = {
       value,
     }
-    return axios.post('/base64/encode', requestBody)
+    return axios.post('/base64/decode', requestBody)
   },
 }

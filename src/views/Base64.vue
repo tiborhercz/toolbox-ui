@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>{{ type }}</h1>
+        <h1>Base64 {{ type }}</h1>
       </v-col>
     </v-row>
     <base64

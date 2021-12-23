@@ -16,6 +16,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "Cidr" */ '../views/Cidr'),
   },
   {
+    path: '/jwt',
+    name: 'Jwt',
+    component: () => import(/* webpackChunkName: "Jwt" */ '../views/Jwt'),
+  },
+  {
     path: '/base64',
     name: 'Base64',
     component: {

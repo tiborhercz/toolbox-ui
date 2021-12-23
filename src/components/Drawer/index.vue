@@ -69,6 +69,11 @@ export default {
           icon: 'mdi-web',
           to: '/cidr',
         },
+        {
+          title: 'Jwt',
+          icon: 'mdi-web',
+          to: '/jwt',
+        },
       ],
     }
   },

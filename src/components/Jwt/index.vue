@@ -16,13 +16,46 @@
           />
         </v-col>
       </v-row>
-      <pre>{{ headerValue | pretty }}</pre>
-      <pre>{{ payloadValue | pretty }}</pre>
+      <v-row>
+        <v-col>
+          <h2>JWT Header</h2>
+          <pre v-bind:ref="'prismJwtHeaderContent'">
+<code
+  class="language-json"
+  v-text="jwtHeaderContent"
+/>
+</pre>
+          <v-btn
+            v-on:click="copyText(headerValue)"
+          >
+            Copy
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <h2>JWT Payload</h2>
+          <pre v-bind:ref="'prismJwtPayloadContent'">
+<code
+  class="language-json"
+  v-text="jwtPayloadContent"
+/>
+</pre>
+          <v-btn
+            v-on:click="copyText(payloadValue)"
+          >
+            Copy
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
+import Prism from 'prismjs'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-javascript'
 import JwtApi from '@/api/jwt'
 
 export default {
@@ -56,6 +89,20 @@ export default {
     }
   },
   computed: {
+    jwtHeaderContent() {
+      this.$nextTick(() => {
+        Prism.highlightAllUnder(this.$refs.prismJwtHeaderContent)
+      })
+
+      return this.headerValue
+    },
+    jwtPayloadContent() {
+      this.$nextTick(() => {
+        Prism.highlightAllUnder(this.$refs.prismJwtPayloadContent)
+      })
+
+      return this.payloadValue
+    },
     inputValue: {
       get() {
         return this.value
@@ -81,6 +128,10 @@ export default {
       },
     },
   },
-  methods: {},
+  methods: {
+    copyText(value) {
+      navigator.clipboard.writeText(value)
+    },
+  },
 }
 </script>

@@ -14,7 +14,6 @@ module.exports = {
                     'vue-style-loader',
                     'css-loader',
                     {
-                        // Requires >= sass-loader@^8.0.0
                         options: {
                             implementation: sass,
                             sassOptions: {

@@ -71,7 +71,7 @@ export default {
         },
         {
           title: 'Jwt',
-          icon: 'mdi-web',
+          icon: 'mdi-code-braces',
           to: '/jwt',
         },
       ],

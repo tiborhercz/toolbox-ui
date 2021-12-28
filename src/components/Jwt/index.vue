@@ -4,12 +4,12 @@
       <v-row>
         <v-col
           cols="12"
-          md="12"
+          md="7"
         >
           <v-textarea
             v-model="inputValue"
             name="input-7-1"
-            label="Output"
+            label="JWT token"
             v-bind:error="error"
             v-bind:error-messages="errorMessages"
             outlined
@@ -17,7 +17,10 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col
+          cols="12"
+          md="7"
+        >
           <h2>JWT Header</h2>
           <pre v-bind:ref="'prismJwtHeaderContent'">
 <code
@@ -33,7 +36,10 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col
+          cols="12"
+          md="7"
+        >
           <h2>JWT Payload</h2>
           <pre v-bind:ref="'prismJwtPayloadContent'">
 <code

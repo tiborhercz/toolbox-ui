@@ -65,12 +65,12 @@ export default {
           ],
         },
         {
-          title: 'Cidr',
+          title: 'CIDR Calculator',
           icon: 'mdi-web',
           to: '/cidr',
         },
         {
-          title: 'Jwt',
+          title: 'JWT Decode',
           icon: 'mdi-code-braces',
           to: '/jwt',
         },

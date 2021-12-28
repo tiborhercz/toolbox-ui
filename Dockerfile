@@ -1,7 +1,13 @@
 FROM node:lts-alpine as build-stage
+
+ENV VUE_APP_API_HOST="localhost"
+ENV VUE_APP_API_PORT=3004
+
 WORKDIR /app
+
 COPY package*.json ./
 RUN npm install
+
 COPY . .
 RUN npm run build
 

@@ -4,7 +4,7 @@
       <v-row>
         <v-col
           cols="12"
-          md="12"
+          md="7"
         >
           <encode
             v-if="type === 'encode'"
@@ -17,7 +17,7 @@
         </v-col>
         <v-col
           cols="12"
-          md="12"
+          md="7"
         >
           <v-textarea
             v-model="outputValue"

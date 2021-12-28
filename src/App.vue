@@ -4,7 +4,23 @@
       v-bind:color="$vuetify.theme.themes['dark'].drawer"
       app
     >
+      <v-container>
+        <v-row>
+          <v-col>
+            <h1>Toolbox</h1>
+          </v-col>
+        </v-row>
+      </v-container>
       <Drawer />
+      <!--      <template v-slot:append>-->
+      <!--        <div class="pa-2">-->
+      <!--          <v-switch-->
+      <!--            v-model="darkMode"-->
+      <!--            label="Dark theme"-->
+      <!--            v-on:change="toggleDarkMode"-->
+      <!--          />-->
+      <!--        </div>-->
+      <!--      </template>-->
     </v-navigation-drawer>
     <v-main>
       <v-container fluid>
@@ -21,7 +37,12 @@ export default {
   name: 'App',
   components: { Drawer },
   data: () => ({
-    //
+    darkMode: true,
   }),
+  methods: {
+    toggleDarkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    },
+  },
 }
 </script>

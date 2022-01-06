@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <v-container fluid>
+  <v-row>
+    <v-col>
+      <p>
+        Get the header and payload from a JWT token
+      </p>
       <v-row>
         <v-col
           cols="12"
@@ -15,8 +18,6 @@
             outlined
           />
         </v-col>
-      </v-row>
-      <v-row>
         <v-col
           cols="12"
           md="7"
@@ -34,8 +35,6 @@
             Copy
           </v-btn>
         </v-col>
-      </v-row>
-      <v-row>
         <v-col
           cols="12"
           md="7"
@@ -54,8 +53,8 @@
           </v-btn>
         </v-col>
       </v-row>
-    </v-container>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

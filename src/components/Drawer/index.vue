@@ -1,6 +1,5 @@
 <template>
   <v-list
-    nav
     dense
   >
     <div

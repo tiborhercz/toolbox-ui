@@ -12,15 +12,15 @@
         </v-row>
       </v-container>
       <Drawer />
-      <!--      <template v-slot:append>-->
-      <!--        <div class="pa-2">-->
-      <!--          <v-switch-->
-      <!--            v-model="darkMode"-->
-      <!--            label="Dark theme"-->
-      <!--            v-on:change="toggleDarkMode"-->
-      <!--          />-->
-      <!--        </div>-->
-      <!--      </template>-->
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-switch
+            v-model="darkMode"
+            label="Dark theme"
+            v-on:change="toggleDarkMode"
+          />
+        </div>
+      </template>
     </v-navigation-drawer>
     <v-main>
       <v-container fluid>

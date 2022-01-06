@@ -1,10 +1,15 @@
 <template>
-  <v-textarea
-    v-model="inputValue"
-    name="input-7-1"
-    label="Decode"
-    outlined
-  />
+  <div>
+    <p>
+      Decode a base64 string to text
+    </p>
+    <v-textarea
+      v-model="inputValue"
+      name="input-7-1"
+      label="Decode"
+      outlined
+    />
+  </div>
 </template>
 
 <script>

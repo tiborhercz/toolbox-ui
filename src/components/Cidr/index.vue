@@ -1,66 +1,73 @@
 <template>
-  <v-container>
-    <v-row class="mb-15">
-      <v-col
-        cols="12"
-        sm="6"
-        md="3"
-      >
-        <v-autocomplete
-          v-bind:items="items"
-          v-bind:search-input.sync="searchValue"
-          v-bind:error="error"
-          v-bind:error-messages="errorMessages"
-          placeholder="10.0.0.0/24"
-          outlined
-          dense
-          v-on:keydown.enter="getCidr()"
-        />
-        <v-btn
-          v-on:click="getCidr()"
+  <v-row>
+    <v-col
+      cols="12"
+    >
+      <p>
+        Calculate the IPv4 address information of a given CIDR range.
+      </p>
+      <v-row class="mb-5">
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
         >
-          Send
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="6"
-      >
-        <v-simple-table dark>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th
-                  width="50%"
-                  class="text-left"
+          <v-autocomplete
+            v-bind:items="items"
+            v-bind:search-input.sync="searchValue"
+            v-bind:error="error"
+            v-bind:error-messages="errorMessages"
+            placeholder="10.0.0.0/24"
+            outlined
+            dense
+            v-on:keydown.enter="getCidr()"
+          />
+          <v-btn
+            v-on:click="getCidr()"
+          >
+            Send
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+          md="6"
+        >
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th
+                    width="50%"
+                    class="text-left"
+                  >
+                    Name
+                  </th>
+                  <th
+                    width="50%"
+                    class="text-left"
+                  >
+                    Value
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="item in ipv4Data"
+                  v-bind:key="item.name"
                 >
-                  Name
-                </th>
-                <th
-                  width="50%"
-                  class="text-left"
-                >
-                  Value
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="item in ipv4Data"
-                v-bind:key="item.name"
-              >
-                <td>{{ item.name }}</td>
-                <td>{{ item.value }}</td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-      </v-col>
-    </v-row>
-  </v-container>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

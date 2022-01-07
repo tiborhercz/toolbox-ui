@@ -73,6 +73,11 @@ export default {
           icon: 'mdi-code-braces',
           to: '/jwt',
         },
+        {
+          title: 'JSON Beautify',
+          icon: 'mdi-code-braces',
+          to: '/json',
+        },
       ],
     }
   },

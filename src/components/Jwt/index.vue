@@ -23,34 +23,22 @@
           md="7"
         >
           <h2>JWT Header</h2>
-          <pre v-bind:ref="'prismJwtHeaderContent'">
-<code
-  class="language-json"
-  v-text="jwtHeaderContent"
-/>
-</pre>
-          <v-btn
-            v-on:click="copyText(headerValue)"
-          >
-            Copy
-          </v-btn>
+          <json-formatter v-bind:json="headerValue" />
+          <basic-button
+            v-bind:label="'copy'"
+            v-bind:copy-value="headerValue"
+          />
         </v-col>
         <v-col
           cols="12"
           md="7"
         >
           <h2>JWT Payload</h2>
-          <pre v-bind:ref="'prismJwtPayloadContent'">
-<code
-  class="language-json"
-  v-text="jwtPayloadContent"
-/>
-</pre>
-          <v-btn
-            v-on:click="copyText(payloadValue)"
-          >
-            Copy
-          </v-btn>
+          <json-formatter v-bind:json="payloadValue" />
+          <basic-button
+            v-bind:label="'copy'"
+            v-bind:copy-value="payloadValue"
+          />
         </v-col>
       </v-row>
     </v-col>
@@ -58,25 +46,15 @@
 </template>
 
 <script>
-import Prism from 'prismjs'
-import 'prismjs/components/prism-json'
-import 'prismjs/components/prism-javascript'
+import BasicButton from '@/components/Basic/Button'
 import JwtApi from '@/api/jwt'
+import JsonFormatter from '@/components/CodeFormatters/JsonFormatter'
 
 export default {
   name: 'Jwt',
-  components: {},
-  filters: {
-    pretty(value) {
-      let jsonString = ''
-      try {
-        jsonString = JSON.stringify(JSON.parse(value), null, 2)
-      } catch (e) {
-        console.log(e)
-      }
-
-      return jsonString
-    },
+  components: {
+    BasicButton,
+    JsonFormatter,
   },
   props: {
     type: {
@@ -94,20 +72,6 @@ export default {
     }
   },
   computed: {
-    jwtHeaderContent() {
-      this.$nextTick(() => {
-        Prism.highlightAllUnder(this.$refs.prismJwtHeaderContent)
-      })
-
-      return this.headerValue
-    },
-    jwtPayloadContent() {
-      this.$nextTick(() => {
-        Prism.highlightAllUnder(this.$refs.prismJwtPayloadContent)
-      })
-
-      return this.payloadValue
-    },
     inputValue: {
       get() {
         return this.value

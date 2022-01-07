@@ -41,6 +41,11 @@ export default {
   }),
   methods: {
     toggleDarkMode() {
+      if (this.darkMode) {
+        window.document.body.style.backgroundColor = '#121212'
+      } else {
+        window.document.body.style.backgroundColor = '#ffffff'
+      }
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
   },

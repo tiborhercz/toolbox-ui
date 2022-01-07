@@ -25,9 +25,5 @@ export default {
       type: String,
     },
   },
-  mounted() {
-    console.log(this.type)
-    console.log(this.$route.params)
-  },
 }
 </script>
